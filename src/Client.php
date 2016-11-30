@@ -17,12 +17,12 @@ use Guzzle\Common\Collection;
  *
  * @author Andras Debreczeni <dev@debreczeniandras.hu>
  */
-class Youtube extends Service\Client
+class Client extends Service\Client
 {
     /**
      * @param array $params
      *
-     * @return Youtube
+     * @return Client
      */
     public static function factory($params = [])
     {
