@@ -1,1 +1,1 @@
-http://docs.guzzlephp.org/en/5.3/
+http://guzzle3.readthedocs.io/webservice-client/webservice-client.html

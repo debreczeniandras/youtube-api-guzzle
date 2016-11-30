@@ -1,6 +1,8 @@
 {
     "name": "debreczeni-andras/youtube-api-guzzle",
     "description": "Youtube API Guzzle",
+    "keywords": ["guzzle3", "youtube", "oauth2", "refreshToken"],
+    "homepage": "https://gitlab.com/debreczeniandras",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -17,7 +19,7 @@
     "require": {
         "guzzlehttp/guzzle": "~3.0",
         "commerceguys/guzzle-oauth2-plugin": "~1.0",
-        "symfony/http-foundation": "^3.2",
+        "symfony/http-foundation": "*",
         "doctrine/collections": "^1.3"
     }
 }
