@@ -19,7 +19,7 @@ class Search extends OperationCommand
     {
         return new Operation([
             'name'          => get_class($this),
-            'responseClass' => 'Dga\\\Youtube\\Response\\SearchListResponse',
+            'responseClass' => 'Dga\\Youtube\\Response\\SearchListResponse',
             'uri'           => 'search',
             'httpMethod'    => 'GET',
             'parameters'    => [

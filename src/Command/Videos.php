@@ -20,7 +20,7 @@ class Videos extends OperationCommand
     {
         return new Operation([
             'name'          => get_class($this),
-            'responseClass' => 'Dga\\\Youtube\\Response\\VideoListResponse',
+            'responseClass' => 'Dga\\Youtube\\Response\\VideoListResponse',
             'uri'           => 'videos',
             'httpMethod'    => 'GET',
             'parameters'    => [

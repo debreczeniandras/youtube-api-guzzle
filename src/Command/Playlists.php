@@ -19,7 +19,7 @@ class Playlists extends OperationCommand
     {
         return new Operation([
             'name'          => get_class($this),
-            'responseClass' => 'Dga\\\Youtube\\Response\\PlayListResponse',
+            'responseClass' => 'Dga\\Youtube\\Response\\PlayListResponse',
             'uri'           => 'playlists',
             'httpMethod'    => 'GET',
             'parameters'    => [
