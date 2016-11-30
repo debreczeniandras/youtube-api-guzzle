@@ -1,12 +1,9 @@
 <?php
 
-namespace Swatch\TvBundle\Type\Youtube;
-
-use Symfony\Component\HttpFoundation\ParameterBag;
+namespace Dga\Youtube\Resource;
 
 /**
- * @author    Andras Debreczeni <andras.debreczeni@db-n.com>
- * @copyright 2016 deepblue networks AG
+ * @author    Andras Debreczeni <gitlab@debreczeniandras.hu>
  */
 class VideoContentDetails
 {

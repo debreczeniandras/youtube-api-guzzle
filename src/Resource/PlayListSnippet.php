@@ -1,14 +1,13 @@
 <?php
 
-namespace Swatch\TvBundle\Type\Youtube;
+namespace Dga\Youtube\Resource;
 
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
- * @author    Andras Debreczeni <andras.debreczeni@db-n.com>
- * @copyright 2016 deepblue networks AG
+ * @author    Andras Debreczeni <gitlab@debreczeniandras.hu>
  */
-class VideoSnippet
+class PlayListSnippet
 {
     /** @var string */
     private $publishedAt;
@@ -29,15 +28,6 @@ class VideoSnippet
     private $channelTitle;
 
     /** @var array */
-    private $tags;
-
-    /** @var integer */
-    private $categoryId;
-
-    /** @var string */
-    private $liveBroadcastContent;
-
-    /** @var array */
     private $localized;
 
     public function __construct($data)
@@ -48,9 +38,6 @@ class VideoSnippet
         $this->description = isset($data['description']) ? $data['description'] : null;
         $this->thumbnails = $this->setThumbnails($data['thumbnails']);
         $this->channelTitle = isset($data['channelTitle']) ? $data['channelTitle'] : null;
-        $this->tags = isset($data['tags']) ? $data['tags'] : [];
-        $this->categoryId = isset($data['categoryId']) ? (int) $data['categoryId'] : null;
-        $this->liveBroadcastContent = isset($data['liveBroadcastContent']) ? $data['liveBroadcastContent'] : null;
         $this->localized = isset($data['localized']) ? $data['localized'] : [];
     }
 

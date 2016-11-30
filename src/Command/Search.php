@@ -1,6 +1,6 @@
 <?php
 
-namespace Swatch\TvBundle\Client\Command;
+namespace Dga\Youtube\Command;
 
 use Guzzle\Service\Command\OperationCommand;
 use Guzzle\Service\Description\Operation;
@@ -8,8 +8,7 @@ use Guzzle\Service\Description\Operation;
 /**
  * https://developers.google.com/youtube/v3/docs/search/list
  *
- * @author    Andras Debreczeni <andras.debreczeni@db-n.com>
- * @copyright 2016 deepblue networks AG
+ * @author    Andras Debreczeni <gitlab@debreczeniandras.hu>
  */
 class Search extends OperationCommand
 {
@@ -20,7 +19,7 @@ class Search extends OperationCommand
     {
         return new Operation([
             'name'          => get_class($this),
-            'responseClass' => 'Swatch\\TvBundle\\Type\\Youtube\\SearchListResponse',
+            'responseClass' => 'Dga\\\Youtube\\Response\\SearchListResponse',
             'uri'           => 'search',
             'httpMethod'    => 'GET',
             'parameters'    => [
@@ -79,8 +78,6 @@ class Search extends OperationCommand
                                     video, but it does not also set one of the forContentOwner, forDeveloper, 
                                     or forMine filters.',
                     'type'        => 'string',
-                    'default'     => 'UCyIdwfzxXSx3zrm0clnYd2g',
-                    'static' => true
                 ],
                 'eventType'         => [
                     'location'    => 'query',

@@ -1,15 +1,11 @@
 <?php
 
-namespace Swatch\TvBundle\Type\Youtube;
-
-use Swatch\WebBundle\Services\LocaleService;
-use Symfony\Component\Validator\Constraints as Assert;
+namespace Dga\Youtube\Resource;
 
 /**
  * A simple object holding the parameters we can use for rendering a proper embed url.
  *
- * @author    Andras Debreczeni <andras.debreczeni@db-n.com>
- * @copyright 2016 deepblue networks AG
+ * @author    Andras Debreczeni <gitlab@debreczeniandras.hu>
  */
 final class VideoEmbedParameters
 {
@@ -311,7 +307,11 @@ final class VideoEmbedParameters
     public function __construct()
     {
         $locale   = \Locale::getDefault();
-        $this->hl = LocaleService::languageIsoFromLocale($locale);
+        $parsedLocale = \Locale::parseLocale($locale);
+
+        if (isset($parsedLocale['language'])) {
+            $this->hl = $parsedLocale['language'];
+        }
     }
 
     /**

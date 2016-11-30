@@ -1,16 +1,14 @@
 <?php
 
-namespace Swatch\TvBundle\Client\Command;
+namespace Dga\Youtube\Command;
 
 use Guzzle\Service\Command\OperationCommand;
 use Guzzle\Service\Description\Operation;
-use Swatch\TvBundle\Type\Youtube\Video;
 
 /**
  * https://developers.google.com/youtube/v3/docs/videos/list
  *
- * @author    Andras Debreczeni <andras.debreczeni@db-n.com>
- * @copyright 2016 deepblue networks AG
+ * @author    Andras Debreczeni <gitlab@debreczeniandras.hu>
  */
 class Playlists extends OperationCommand
 {
@@ -21,14 +19,14 @@ class Playlists extends OperationCommand
     {
         return new Operation([
             'name'          => get_class($this),
-            'responseClass' => 'Swatch\\TvBundle\\Type\\Youtube\\PlayListResponse',
+            'responseClass' => 'Dga\\\Youtube\\Response\\PlayListResponse',
             'uri'           => 'playlists',
             'httpMethod'    => 'GET',
             'parameters'    => [
 
                 // REQUIRED
 
-                'part'            => [
+                'part' => [
                     'location'    => 'query',
                     'description' => 'The part parameter specifies a comma-separated list of one or more video 
                                     resource properties that the API response will include.',
@@ -39,7 +37,7 @@ class Playlists extends OperationCommand
 
                 // FILTERS (specify exactly one of the following parameters)
 
-                'channelId'         => [
+                'channelId' => [
                     'location'    => 'query',
                     'description' => 'The channelId parameter indicates that the API response should only contain 
                                     resources created by the channel.
@@ -48,18 +46,16 @@ class Playlists extends OperationCommand
                                     specifies a value for the channelId parameter and sets the type parameter value to 
                                     video, but it does not also set one of the forContentOwner, forDeveloper, 
                                     or forMine filters.',
-                    'type'        => 'string',
-                    'default'     => 'UCyIdwfzxXSx3zrm0clnYd2g',
-                    'static'      => true
+                    'type'        => 'string'
                 ],
-                'id'              => [
+                'id'        => [
                     'location'    => 'query',
                     'description' => 'The id parameter specifies a comma-separated list of the YouTube video ID(s) 
                                     for the resource(s) that are being retrieved. In a video resource, 
                                     the id property specifies the video\'s ID.',
                     'type'        => 'string',
                 ],
-                'mine'              => [
+                'mine'      => [
                     'location'    => 'query',
                     'description' => 'This parameter can only be used in a properly authorized request. Set this 
                                     parameter\'s value to true to instruct the API to only return playlists owned by 
@@ -69,7 +65,7 @@ class Playlists extends OperationCommand
 
                 // OPTIONAL PARAMETERS
 
-                'hl'              => [
+                'hl'                            => [
                     'location'    => 'query',
                     'description' => 'The hl parameter instructs the API to retrieve localized resource metadata for a 
                                     specific application language that the YouTube website supports. The parameter 
@@ -82,7 +78,7 @@ class Playlists extends OperationCommand
                                     details in the resource\'s default language.',
                     'type'        => 'string',
                 ],
-                'maxResults'      => [
+                'maxResults'                    => [
                     'location'    => 'query',
                     'description' => 'The maxResults parameter specifies the maximum number of items that should 
                                     be returned in the result set.
@@ -92,7 +88,7 @@ class Playlists extends OperationCommand
                                     Acceptable values are 1 to 50, inclusive. The default value is 5.',
                     'type'        => 'integer',
                 ],
-                'onBehalfOfContentOwner'         => [
+                'onBehalfOfContentOwner'        => [
                     'location'    => 'query',
                     'description' => 'This parameter can only be used in a properly authorized request. Note: This 
                                     parameter is intended exclusively for YouTube content partners.
@@ -107,7 +103,7 @@ class Playlists extends OperationCommand
                                     specified YouTube content owner.',
                     'type'        => 'string',
                 ],
-                'onBehalfOfContentOwnerChannel'         => [
+                'onBehalfOfContentOwnerChannel' => [
                     'location'    => 'query',
                     'description' => 'This parameter can only be used in a properly authorized request. Note: This 
                                     parameter is intended exclusively for YouTube content partners.
@@ -127,7 +123,7 @@ class Playlists extends OperationCommand
                                     having to provide authentication credentials for each separate channel.',
                     'type'        => 'string',
                 ],
-                'pageToken'         => [
+                'pageToken'                     => [
                     'location'    => 'query',
                     'description' => 'The pageToken parameter identifies a specific page in the result set that should 
                                     be returned. In an API response, the nextPageToken and prevPageToken properties 

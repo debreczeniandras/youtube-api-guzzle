@@ -1,16 +1,15 @@
 <?php
 
-namespace Swatch\TvBundle\Client\Command;
+namespace Dga\Youtube\Command;
 
+use Dga\Youtube\Resource\Video;
 use Guzzle\Service\Command\OperationCommand;
 use Guzzle\Service\Description\Operation;
-use Swatch\TvBundle\Type\Youtube\Video;
 
 /**
  * https://developers.google.com/youtube/v3/docs/videos/list
  *
- * @author    Andras Debreczeni <andras.debreczeni@db-n.com>
- * @copyright 2016 deepblue networks AG
+ * @author    Andras Debreczeni <gitlab@debreczeniandras.hu>
  */
 class Videos extends OperationCommand
 {
@@ -21,7 +20,7 @@ class Videos extends OperationCommand
     {
         return new Operation([
             'name'          => get_class($this),
-            'responseClass' => 'Swatch\\TvBundle\\Type\\Youtube\\VideoListResponse',
+            'responseClass' => 'Dga\\\Youtube\\Response\\VideoListResponse',
             'uri'           => 'videos',
             'httpMethod'    => 'GET',
             'parameters'    => [

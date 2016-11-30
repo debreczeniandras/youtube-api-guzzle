@@ -1,13 +1,12 @@
 <?php
 
-namespace Swatch\TvBundle\Type\Youtube;
+namespace Dga\Youtube\Resource;
 
 use Guzzle\Service\Command\OperationCommand;
 use Guzzle\Service\Command\ResponseClassInterface;
 
 /**
- * @author    Andras Debreczeni <andras.debreczeni@db-n.com>
- * @copyright 2016 deepblue networks AG
+ * @author    Andras Debreczeni <gitlab@debreczeniandras.hu>
  */
 class PlayList implements ResponseClassInterface
 {

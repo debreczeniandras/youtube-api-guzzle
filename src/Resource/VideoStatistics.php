@@ -1,10 +1,9 @@
 <?php
 
-namespace Swatch\TvBundle\Type\Youtube;
+namespace Dga\Youtube\Resource;
 
 /**
- * @author    Andras Debreczeni <andras.debreczeni@db-n.com>
- * @copyright 2016 deepblue networks AG
+ * @author    Andras Debreczeni <gitlab@debreczeniandras.hu>
  */
 class VideoStatistics
 {
@@ -24,8 +23,6 @@ class VideoStatistics
     private $commentCount;
 
     /**
-     * VideoStatistics constructor.
-     *
      * @param $statistics
      */
     public function __construct($statistics)

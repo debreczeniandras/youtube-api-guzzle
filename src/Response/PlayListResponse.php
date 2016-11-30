@@ -1,18 +1,17 @@
 <?php
 
-namespace Swatch\TvBundle\Type\Youtube;
+namespace Dga\Youtube\Response;
 
+use Dga\Youtube\Resource\PlayList;
 use Doctrine\Common\Collections\ArrayCollection;
 use Guzzle\Service\Command\OperationCommand;
 use Guzzle\Service\Command\ResponseClassInterface;
 
 /**
- * @author    Andras Debreczeni <andras.debreczeni@db-n.com>
- * @copyright 2016 deepblue networks AG
+ * @author    Andras Debreczeni <gitlab@debreczeniandras.hu>
  */
-class VideoListResponse implements ResponseClassInterface
+class PlayListResponse implements ResponseClassInterface
 {
-
     private $etag;
     private $nextPageToken;
     private $prevPageToken;
@@ -40,7 +39,7 @@ class VideoListResponse implements ResponseClassInterface
         $this->pageInfo      = $response['pageInfo'];
 
         $items = array_map(function ($item) {
-            return new Video($item);
+            return new PlayList($item);
         }, $response['items']);
 
         $this->items = new ArrayCollection($items);
@@ -55,7 +54,7 @@ class VideoListResponse implements ResponseClassInterface
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|PlayList[]
      */
     public function getItems()
     {

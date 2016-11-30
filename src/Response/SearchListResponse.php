@@ -1,18 +1,17 @@
 <?php
 
-namespace Swatch\TvBundle\Type\Youtube;
+namespace Dga\Youtube\Response;
 
+use Dga\Youtube\Resource\Video;
 use Doctrine\Common\Collections\ArrayCollection;
 use Guzzle\Service\Command\OperationCommand;
 use Guzzle\Service\Command\ResponseClassInterface;
 
 /**
- * @author    Andras Debreczeni <andras.debreczeni@db-n.com>
- * @copyright 2016 deepblue networks AG
+ * @author    Andras Debreczeni <gitlab@debreczeniandras.hu>
  */
 class SearchListResponse implements ResponseClassInterface, \Countable
 {
-
     /** @var string */
     private $etag;
 

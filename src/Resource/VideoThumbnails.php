@@ -1,12 +1,11 @@
 <?php
 
-namespace Swatch\TvBundle\Type\Youtube;
+namespace Dga\Youtube\Resource;
 
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
- * @author    Andras Debreczeni <andras.debreczeni@db-n.com>
- * @copyright 2016 deepblue networks AG
+ * @author    Andras Debreczeni <gitlab@debreczeniandras.hu>
  */
 class VideoThumbnails extends ParameterBag
 {
