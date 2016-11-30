@@ -15,7 +15,7 @@ use Guzzle\Common\Collection;
  * @method SearchListResponse   Search(array $parameters)
  * @method PlayListResponse     Playlists(array $parameters)
  *
- * @author Andras Debreczeni <gitlab@debreczeniandras.hu>
+ * @author Andras Debreczeni <dev@debreczeniandras.hu>
  */
 class Youtube extends Service\Client
 {

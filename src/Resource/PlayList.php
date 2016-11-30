@@ -6,7 +6,7 @@ use Guzzle\Service\Command\OperationCommand;
 use Guzzle\Service\Command\ResponseClassInterface;
 
 /**
- * @author    Andras Debreczeni <gitlab@debreczeniandras.hu>
+ * @author    Andras Debreczeni <dev@debreczeniandras.hu>
  */
 class PlayList implements ResponseClassInterface
 {

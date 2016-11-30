@@ -9,7 +9,7 @@ use Guzzle\Service\Description\Operation;
 /**
  * https://developers.google.com/youtube/v3/docs/videos/list
  *
- * @author    Andras Debreczeni <gitlab@debreczeniandras.hu>
+ * @author    Andras Debreczeni <dev@debreczeniandras.hu>
  */
 class Videos extends OperationCommand
 {

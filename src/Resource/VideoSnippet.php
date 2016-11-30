@@ -5,7 +5,7 @@ namespace Dga\Youtube\Resource;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
- * @author    Andras Debreczeni <gitlab@debreczeniandras.hu>
+ * @author    Andras Debreczeni <dev@debreczeniandras.hu>
  */
 class VideoSnippet
 {

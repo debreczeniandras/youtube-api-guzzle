@@ -5,7 +5,7 @@ namespace Dga\Youtube\Resource;
 /**
  * A simple object holding the parameters we can use for rendering a proper embed url.
  *
- * @author    Andras Debreczeni <gitlab@debreczeniandras.hu>
+ * @author    Andras Debreczeni <dev@debreczeniandras.hu>
  */
 final class VideoEmbedParameters
 {

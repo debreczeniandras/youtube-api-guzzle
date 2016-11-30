@@ -3,7 +3,7 @@
 namespace Dga\Youtube\Resource;
 
 /**
- * @author    Andras Debreczeni <gitlab@debreczeniandras.hu>
+ * @author    Andras Debreczeni <dev@debreczeniandras.hu>
  */
 class VideoStatistics
 {
