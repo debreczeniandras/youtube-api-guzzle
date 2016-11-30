@@ -1,0 +1,16 @@
+{
+    "name": "debreczeni-andras/youtube-api-guzzle",
+    "description": "Youtube API Guzzle",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andras Debreczeni",
+            "email": "gitlab@debreczeniandras.hu"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "~5.0",
+        "guzzlehttp/guzzle-services": "0.6"
+    }
+}
