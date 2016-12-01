@@ -100,4 +100,46 @@ class VideoSnippet
     {
         return $this->thumbnails;
     }
+
+    /**
+     * @return string
+     */
+    public function getChannelId()
+    {
+        return $this->channelId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getChannelTitle()
+    {
+        return $this->channelTitle;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param $tag
+     *
+     * @return bool
+     */
+    public function hasTag($tag)
+    {
+        return in_array($tag, $this->tags);
+    }
+
+    /**
+     * @return string
+     */
+    public function getLiveBroadcastContent()
+    {
+        return $this->liveBroadcastContent;
+    }
 }
