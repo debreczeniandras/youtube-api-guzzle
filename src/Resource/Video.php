@@ -12,93 +12,95 @@ class Video implements ResponseClassInterface
 {
     const DEFAULT_WIDTH  = 1004;
     const DEFAULT_HEIGHT = 565;
-
+    
+    const COOKIE_EMBED_HOST    = 'www.youtube.com';
+    const NO_COOKIE_EMBED_HOST = 'www.youtube-nocookie.com';
+    
     /** @var string */
     private $id;
-
+    
     /** @var string */
     private $etag;
-
+    
     /** @var VideoSnippet */
     private $snippet;
-
+    
     /** @var VideoContentDetails */
     private $contentDetails;
-
+    
     /** @var VideoStatus */
     private $status;
-
-    /** @var VideoStatistics  */
+    
+    /** @var VideoStatistics */
     private $statistics;
-
+    
     /** @var VideoPlayer */
     private $player;
-
+    
     /** @var VideoFileDetails */
     private $fileDetails;
-
+    
     /** @var VideoEmbedParameters */
     private $embed;
-
+    
     /** @var int */
     private $width = self::DEFAULT_WIDTH;
-
+    
     /** @var int */
     private $height = self::DEFAULT_HEIGHT;
-
-
+    
     /**
      * {@inheritdoc}
      */
     public static function fromCommand(OperationCommand $command)
     {
         $response = $command->getResponse()->json();
-
+        
         if ($response['pageInfo']['totalResults'] !== 1) {
             return null;
         }
-
+        
         $item = $response['items'][0];
-
+        
         if ($item['kind'] !== 'youtube#video') {
             return null;
         }
-
+        
         return new self($item);
     }
-
+    
     public function __construct($item)
     {
         $this->id   = $item['id'];
         $this->etag = $item['etag'];
-
+        
         if (isset($item['snippet'])) {
             $this->snippet = new VideoSnippet($item['snippet']);
         }
-
+        
         if (isset($item['contentDetails'])) {
             $this->contentDetails = new VideoContentDetails($item['contentDetails']);
         }
-
+        
         if (isset($item['status'])) {
             $this->status = new VideoStatus($item['status']);
         }
-
+        
         if (isset($item['statistics'])) {
             $this->statistics = new VideoStatistics($item['statistics']);
         }
-
+        
         if (isset($item['player'])) {
             $this->player = new VideoPlayer($item['player']);
         }
-
+        
         if (isset($item['fileDetails'])) {
             $this->fileDetails = new VideoFileDetails($item['fileDetails']);
         }
-
+        
         $this->embed = new VideoEmbedParameters();
     }
-
+    
     /**
      * @param $searchResult
      *
@@ -110,10 +112,10 @@ class Video implements ResponseClassInterface
         $item['id']      = $searchResult['id']['videoId'];
         $item['etag']    = null;
         $item['snippet'] = $searchResult['snippet'];
-
+        
         return new self($item);
     }
-
+    
     /**
      * @return string
      */
@@ -121,7 +123,7 @@ class Video implements ResponseClassInterface
     {
         return $this->id;
     }
-
+    
     /**
      * @return VideoSnippet
      */
@@ -129,7 +131,7 @@ class Video implements ResponseClassInterface
     {
         return $this->snippet;
     }
-
+    
     /**
      * @return VideoPlayer
      */
@@ -137,7 +139,7 @@ class Video implements ResponseClassInterface
     {
         return $this->player;
     }
-
+    
     /**
      * @return string
      */
@@ -145,7 +147,7 @@ class Video implements ResponseClassInterface
     {
         return $this->etag;
     }
-
+    
     /**
      * @return VideoContentDetails
      */
@@ -153,7 +155,7 @@ class Video implements ResponseClassInterface
     {
         return $this->contentDetails;
     }
-
+    
     /**
      * @return VideoStatus
      */
@@ -161,7 +163,7 @@ class Video implements ResponseClassInterface
     {
         return $this->status;
     }
-
+    
     /**
      * @return VideoStatistics
      */
@@ -169,7 +171,7 @@ class Video implements ResponseClassInterface
     {
         return $this->statistics;
     }
-
+    
     /**
      * @return VideoFileDetails
      */
@@ -177,7 +179,7 @@ class Video implements ResponseClassInterface
     {
         return $this->fileDetails;
     }
-
+    
     /**
      * @return VideoEmbedParameters
      */
@@ -185,7 +187,7 @@ class Video implements ResponseClassInterface
     {
         return $this->embed;
     }
-
+    
     /**
      * @return int
      */
@@ -193,7 +195,7 @@ class Video implements ResponseClassInterface
     {
         return $this->width;
     }
-
+    
     /**
      * @param int $width
      *
@@ -202,10 +204,10 @@ class Video implements ResponseClassInterface
     public function setWidth($width)
     {
         $this->width = (int)$width;
-
+        
         return $this;
     }
-
+    
     /**
      * @return int
      */
@@ -213,7 +215,7 @@ class Video implements ResponseClassInterface
     {
         return $this->height;
     }
-
+    
     /**
      * @param int $height
      *
@@ -222,10 +224,10 @@ class Video implements ResponseClassInterface
     public function setHeight($height)
     {
         $this->height = (int)$height;
-
+        
         return $this;
     }
-
+    
     /**
      * Used in templates to render proper padding.
      * Round it up olways to its closes fourth (0, 0.25, 0.5, 0.75)
@@ -237,39 +239,46 @@ class Video implements ResponseClassInterface
     public function getRatio()
     {
         $rawRatio = $this->height / $this->width * 100;
-
+        
         // round it up to two digits
         $exactFraction = floor($rawRatio);
-
+        
         // now divide it to 4, we should get the nearest fourth
         $fourthRound = $exactFraction + (round(($rawRatio - $exactFraction) * 4) * .25);
-
+        
         return $fourthRound;
     }
-
+    
     /**
+     * @param bool $noCookie if the nocookie host should be used.
+     *
      * @return string
      */
-    public function getEmbedUrl()
+    public function getEmbedUrl($noCookie = false)
     {
-        $embedUrl    = "https://www.youtube.com/embed/%s%s";
+        $embedUrl = 'https://'.self::COOKIE_EMBED_HOST."/embed/%s%s";
+        
+        if ($noCookie) {
+            $embedUrl = 'https://'.self::NO_COOKIE_EMBED_HOST."/embed/%s%s";
+        }
+        
         $embedParams = $this->embed->getNonNullProperties();
-
+        
         $query = '';
         if ($embedParams) {
-            $query = '?' . http_build_query($embedParams);
+            $query = '?'.http_build_query($embedParams);
         }
-
+        
         return sprintf($embedUrl, $this->id, $query);
     }
-
+    
     /**
      * @return string
      */
     public function getLightboxUrl()
     {
         $watchUrl = "https://www.youtube.com/watch?v=%s";
-
+        
         return sprintf($watchUrl, $this->id);
     }
 }
